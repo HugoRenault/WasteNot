@@ -1,0 +1,1 @@
+// View w/ name, stars, rating and fading-in image
