@@ -77,7 +77,7 @@ export default function IngredientsMains() {
       <View style={styles.barcodebox}>
         <BarCodeScanner
           onBarCodeScanned={handleBarCodeScanned}
-          style={{ height: 400, width: 400 }} />
+          style={{ height: 400, width: 400, backgroundColor:'black' }} />
       </View>
       <Text style={styles.maintext}>Scannez le code barre de votre aliment !</Text>
       <Pressable style={styles.create_button} onPress={() => setShowScan(false)}><Text style={styles.button_text}>Annuler</Text></Pressable>
@@ -87,14 +87,14 @@ export default function IngredientsMains() {
   if (showScan === false) {
     return (
       <SafeAreaView style={styles.container}>
-      <ScrollView contentContainerStyle={styles.ingredient_list}>
-      {products.map((product, index) => {
-        return (
-          <Ingredient product={product}/>
-        );
-      })}
-    </ScrollView>
-    <Pressable style={styles.create_button} onPress={addIngredient}><Text style={styles.button_text}>Scanner un article</Text></Pressable>
+        <ScrollView contentContainerStyle={styles.ingredient_list}>
+          {products.map((product, index) => {
+            return (
+              <Ingredient product={product}/>
+            );
+          })}
+        </ScrollView>
+        <Pressable style={[styles.create_button,{marginBottom:100}]} onPress={addIngredient}><Text style={styles.button_text}>Scanner un article</Text></Pressable>
 
       </SafeAreaView>
     )

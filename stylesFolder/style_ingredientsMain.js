@@ -1,5 +1,7 @@
 import { StyleSheet } from 'react-native';
 
+const dark = '#231F20';
+
 export default StyleSheet.create({
     carouselContainer: {
         // TODO : finish carousel
@@ -37,9 +39,9 @@ export default StyleSheet.create({
         justifyContent: 'center',
         paddingVertical: 12,
         paddingHorizontal: 32,
-        borderRadius: 4,
-        elevation: 3,
-        backgroundColor: 'black',
+        borderRadius: 16,
+        elevation: 0,
+        backgroundColor: dark,
         margin: 20,
       },
       ingredient_container: {
