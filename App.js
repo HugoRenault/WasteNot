@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Text, View, Button, Pressable, Image, SafeAreaView, ScrollView } from 'react-native';
+import { Text, View, Button, Pressable, Image, SafeAreaView, ScrollView, Alert } from 'react-native';
 import { BarCodeScanner } from 'expo-barcode-scanner';
 import styles from './stylesFolder/styles_main.js';
 
 export default function App() {
   const [hasPermission, setHasPermission] = useState(null);
-  const [text, setText] = useState('Scannez le code barre de votre aliment !')
   const [showScan, setShowScan] = useState(false);
   const [arr, setArr] = useState([]);
   const [products, setProducts] = useState([]);
@@ -51,6 +50,7 @@ export default function App() {
     setShowScan(false)
 
     getProduct(data)
+    Alert.alert("L'ingrédient a été ajouté avec succès");
   };
 
   if (hasPermission === null) {
@@ -75,7 +75,8 @@ export default function App() {
           onBarCodeScanned={handleBarCodeScanned}
           style={{ height: 400, width: 400 }} />
       </View>
-      <Text style={styles.maintext}>{text}</Text>
+      <Text style={styles.maintext}>Scannez le code barre de votre aliment !</Text>
+      <Pressable style={styles.create_button} onPress={() => setShowScan(false)}><Text style={styles.button_text}>Annuler</Text></Pressable>
     </View>
 )
   }
