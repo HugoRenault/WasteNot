@@ -6,7 +6,7 @@ import React from 'react'
 export default function RecipeView() {
   return (
     <View>
-      <Text>RecipeView</Text>
+      <Text>Recipe view</Text>
     </View>
   )
 }
