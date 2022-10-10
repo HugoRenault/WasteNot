@@ -15,6 +15,8 @@ export default function App() {
     let data = await response.json()
     console.log('the data is here :', data)
 
+    if(data.status_verbose==="product not found"){return}
+
     let arrOfObj = [...products];
     console.log('name', data.product.product_name)
     console.log('image', data.product.image_front_small_url)
