@@ -10,10 +10,11 @@
   },
   "dependencies": {
     "expo": "~46.0.13",
+    "expo-barcode-scanner": "~11.4.0",
     "expo-status-bar": "~1.4.0",
     "react": "18.0.0",
     "react-native": "0.69.6",
-    "expo-barcode-scanner": "~11.4.0"
+    "react-native-units": "^1.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9"

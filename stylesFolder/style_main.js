@@ -1,4 +1,9 @@
 import { StyleSheet } from 'react-native';
+import RNU from 'react-native-units';
+
+const dark = '#231F20';
+const toolbarHeight = 42;
+const iconHeight = 28;
 
 export default StyleSheet.create({
     carouselContainer: {
@@ -11,13 +16,31 @@ export default StyleSheet.create({
       alignItems: 'center',
       justifyContent: 'center',
     },
-    toolbarContainer: {
-        flex: 1,
-        backgroundColor: 'white',
-        alignItems: 'center',
-        justifyContent: 'center',
-        flexDirection: 'row',
-      },
+    toolBarContainer: {
+      position: 'absolute',
+      bottom: 20,
+      width: RNU.vw(100),
+      height: toolbarHeight,
+      alignItems: 'center',
+      justifyContent: 'center',
+      flexDirection: 'row',
+    },
+    toolbar: {
+
+      backgroundColor: 'white',
+      alignItems: 'center',
+      alignSelf:'center',
+      justifyContent: 'space-evenly',
+      flexDirection: 'row',
+      backgroundColor: dark, // desaturate
+      height: toolbarHeight, // Switch to RNU
+      width: RNU.vw(81), //RNU.vw(61)
+      borderRadius:50,
+    },
+    toolIcon: {
+      width:iconHeight,
+      height:iconHeight,
+    },
     maintext: {
       fontSize: 16,
       margin: 20,
@@ -34,12 +57,10 @@ export default StyleSheet.create({
       create_button: {
         alignItems: 'center',
         justifyContent: 'center',
-        paddingVertical: 12,
-        paddingHorizontal: 32,
-        borderRadius: 4,
-        elevation: 3,
-        backgroundColor: 'black',
-        margin: 2,
+        borderRadius: 50,
+        height:51.25,
+        width:51.25, // sqrt(2*32^2) + 6
+        backgroundColor: "",
       },
     }
   );
