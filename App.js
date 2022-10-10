@@ -20,7 +20,7 @@ export default function App() {
     let arrOfObj = [...products];
     console.log('name', data.product.product_name)
     console.log('image', data.product.image_front_small_url)
-    arrOfObj.push({name: data.product.product_name, image: data.product.image_front_small_url});
+    arrOfObj.push({name: data.product.product_name, image: data.product.image_front_small_url, id:data.code});
     setProducts(arrOfObj);
 
   }
@@ -85,7 +85,7 @@ export default function App() {
       <ScrollView contentContainerStyle={styles.ingredient_list}>
       {products.map((product, index) => {
         return (
-          <View style={styles.ingredient_container}>   
+          <View style={styles.ingredient_container} key={product.id}>   
           <Image
         style={styles.tinyLogo}
         source={{
