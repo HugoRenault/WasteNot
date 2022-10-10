@@ -1,1 +1,0 @@
-// Views in main page
