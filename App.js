@@ -47,8 +47,8 @@ export default function App() {
   if ( showMain == 1) {
     return (
       <View style={styles.container}>
-        <IngredientsMains style={{flex:5, backgroundColor: 'black'}}/>
-        <ToolBar style={{flex:1, backgroundColor: 'yellow'}}/>
+        <IngredientsMains/>
+        <ToolBar/>
       </View>
     )
   }
