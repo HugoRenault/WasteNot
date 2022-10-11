@@ -3,7 +3,7 @@ import RNU from 'react-native-units';
 
 const dark = '#231F20';
 const toolbarHeight = 42;
-const iconHeight = 28;
+const iconHeight = 24;
 
 export default StyleSheet.create({
     carouselContainer: {
