@@ -17,17 +17,14 @@ var number = 1
 
 
 export default function  RecipeView () {
-
   const [loaded, setIsLoaded] = useState(false)
   const [dataRecipes, setDataRecipes] = useState([])
-
 
   function buildUrl(params){
     return(
       params.url + '&ingredients=' + params.ingredients + '&ignorePantry=' + params.ignorePantry + '&ranking=' + params.ranking + '&number=' + params.number
     )
   }
-  
   
   let params = {
       'url' : API_URL_FIND_BY_INGREDIENTS,
@@ -36,6 +33,7 @@ export default function  RecipeView () {
       'ranking' : ranking,
       'number' : number
   }
+
   const loadRecipes = async() => {
     let response = await fetch(buildUrl(params))
     let recipesList = await response.json();
@@ -43,18 +41,17 @@ export default function  RecipeView () {
     console.log(recipesList)
     setDataRecipes(recipesList);
   };
-  
 
   if(loaded){
     console.log(dataRecipes)
     return (
       dataRecipes.map((obj) => {
-        return(<Text>{obj.title}</Text>)
+        return(<Text key={obj.id}>{obj.title}</Text>)
       })
     );
   }
   else {
-    loadRecipes();
+    loadRecipes(); // only load if not loaded yet
     return(<Text>Loading...</Text>);
   }
 }
