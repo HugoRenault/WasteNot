@@ -40,6 +40,7 @@ export default StyleSheet.create({
     toolIcon: {
       width:iconHeight,
       height:iconHeight,
+      tintColor:"white",// comme Walter
     },
     maintext: {
       fontSize: 16,
