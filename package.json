@@ -14,7 +14,8 @@
     "expo-status-bar": "~1.4.0",
     "react": "18.0.0",
     "react-native": "0.69.6",
-    "react-native-units": "^1.0.0"
+    "react-native-units": "^1.0.0",
+    "react-native-web": "~0.18.7"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9"

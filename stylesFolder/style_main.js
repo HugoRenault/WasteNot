@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import RNU from 'react-native-units';
+import RNU from 'react-native-units'
 
 const dark = '#231F20';
 const toolbarHeight = 42;

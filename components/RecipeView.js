@@ -19,6 +19,7 @@ var number = 1
 export default function  RecipeView () {
 
   const [loaded, setIsLoaded] = useState(false)
+  const [dataRecipes, setDataRecipes] = useState([])
 
 
   function buildUrl(params){
@@ -27,31 +28,33 @@ export default function  RecipeView () {
     )
   }
   
-  const Recipes = async(flag) => {
-    let params = {
+  
+  let params = {
       'url' : API_URL_FIND_BY_INGREDIENTS,
       'ingredients' : ingredients_example,
       'ignorePantry' : ignorePantry,
       'ranking' : ranking,
       'number' : number
-    }
-    var recipesList = []
-    recipesList = await fetch(buildUrl(params)).then((data) => {
-      setIsLoaded(true);
-      return(data.json())
-    });
-    return(recipesList)
   }
+  const loadRecipes = async() => {
+    let response = await fetch(buildUrl(params))
+    let recipesList = await response.json();
+    setIsLoaded(true);
+    console.log(recipesList)
+    setDataRecipes(recipesList);
+  };
   
-  objs = Recipes().then((data)=>{
-    return(data.map((obj) => {
-      return(<Text>{obj.title}</Text>)
-    }))
-  })
+
   if(loaded){
-      <Text>aaazz</Text>
+    console.log(dataRecipes)
+    return (
+      dataRecipes.map((obj) => {
+        return(<Text>{obj.title}</Text>)
+      })
+    );
   }
   else {
+    loadRecipes();
     return(<Text>Loading...</Text>);
   }
 }
