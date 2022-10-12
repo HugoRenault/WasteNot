@@ -6,6 +6,8 @@ import React, { useState} from 'react'
 const API_KEY_SPOONACULAR = '3ea3890b95c948f78f365ed1e69b2166';
 const API_URL_FIND_BY_INGREDIENTS = `https://api.spoonacular.com/recipes/findByIngredients?apiKey=${API_KEY_SPOONACULAR}`;
 
+const [loaded, setIsLoaded] = useState(false)
+
 ///// PARAMETRIZE /////
 var ingredients_example = 'apple,flour,eggs,milk,sugar'
 var ignorePantry = true
@@ -20,7 +22,6 @@ function buildUrl(params){
 }
 
 const Recipes = async() => {
-  const [loaded, setIsLoaded] = useState(false)
   let params = {
     'url' : API_URL_FIND_BY_INGREDIENTS,
     'ingredients' : ingredients_example,
@@ -31,21 +32,14 @@ const Recipes = async() => {
   var recipesList = []
   recipesList = await fetch(buildUrl(params)).then(data => data.json());
   setIsLoaded(recipesList != []);
-
-  if(loaded){
-    return(recipesList.map((obj) => {return(<Text>{obj.title}</Text>)}));
-  }
-  return(<Text>Loading...</Text>);
+  return(recipesList)
 }
 
-export default function  RecipeView () {
-  
-  
-    return (
-      <View>   
-        <Recipes/>
-      </View>
-    )
+export default function  RecipeView () {  
+    if(loaded){
+       return(Recipes().map((obj) => {return(<Text>{obj.title}</Text>)}));
+     }
+     return(<Text>Loading...</Text>);
 }
 
 const styles = StyleSheet.create({})
