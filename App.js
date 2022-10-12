@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Text, View, Button, Pressable, Image, SafeAreaView, ScrollView, Alert } from 'react-native';
 
-import IngredientsMains from './components/IngredientsMains';
+import Scan from './components/Scan';
 import RecipeView from './components/RecipeView';
 
 import styles from './stylesFolder/style_main';
@@ -47,7 +47,7 @@ export default function App() {
   if ( showMain == 1) {
     return (
       <View style={styles.container}>
-        <IngredientsMains/>
+        <Scan/>
         <ToolBar/>
       </View>
     )
