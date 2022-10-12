@@ -30,15 +30,18 @@ const Recipes = async(flag) => {
     'number' : number
   }
   var recipesList = []
-  recipesList = await fetch(buildUrl(params)).then(data => data.json());
-  flag(recipesList != []);
+  recipesList = await fetch(buildUrl(params)).then((data) => {
+    flag(true);
+    return(data.json())
+  });
   return(recipesList)
 }
 
 export default function  RecipeView () {
     const [loaded, setIsLoaded] = useState(false)
+    objs = Recipes(setIsLoaded)
     if(loaded){
-       return(Recipes(flag).map((obj) => {return(<Text>{obj.title}</Text>)}));
+       return(objs.map((obj) => {return(<Text>{obj.title}</Text>)}));
      }
      return(<Text>Loading...</Text>);
 }
