@@ -37,6 +37,18 @@ export default StyleSheet.create({
       width: RNU.vw(81), //RNU.vw(61)
       borderRadius:50,
     },
+    circle: {
+      width: 55,
+      height: 55,
+      borderRadius: 55/2,
+      backgroundColor: dark,
+      flexDirection: 'ro',
+      alignContent: 'center',
+      justifyContent: 'center',
+    },
+    noCircle: {
+    
+    },
     toolIcon: {
       width:iconHeight,
       height:iconHeight,
@@ -62,6 +74,9 @@ export default StyleSheet.create({
         height:51.25,
         width:51.25, // sqrt(2*32^2) + 6
         backgroundColor: "",
+        flexDirection: 'column',
+        alignContent: 'center',
+        justifyContent: 'center',
       },
     }
   );
