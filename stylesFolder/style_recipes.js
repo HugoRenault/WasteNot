@@ -58,6 +58,34 @@ export default StyleSheet.create({
     starContainer: {
       flexDirection: 'row',
       alignItems:'center'
+    },
+    recipeDetailsContainer: {
+      flex: 1,
+      flexDirection: 'column',
+      backgroundColor: 'white',
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+    detailsLogo: {
+      backgroundColor: 'grey',
+      height: '100%',
+      width:'100%', 
+      flex:1
+    },
+    recipeDetailsTitle: {
+      flex:3,
+      fontWeight: 'bold',
+      fontSize: 25,
+      margin:12,
+      marginTop:15,
+    },
+    smallClose: {
+      width:40,
+      height:40,
+      position: 'absolute',
+      left:     20,
+      top:      60,
+      tintColor:'white'
     }
     }
     

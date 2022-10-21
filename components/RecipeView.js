@@ -1,6 +1,6 @@
 // View w/ name, stars, rating and fading-in image
 
-import { StyleSheet, Text, View, ScrollView, Image, ImageBackground} from 'react-native'
+import { StyleSheet, Text, View, ScrollView, Image, ImageBackground, Pressable} from 'react-native'
 import React, { useState} from 'react'
 import {LinearGradient} from  'expo-linear-gradient'
 
@@ -9,6 +9,8 @@ import styles from '../stylesFolder/style_recipes'
 
 import arrow from '../assets/icons/arrow.png'
 import star from '../assets/icons/star.png'
+import close from '../assets/icons/close.png'
+
 
 
 const API_KEY_SPOONACULAR = '3ea3890b95c948f78f365ed1e69b2166';
@@ -27,6 +29,11 @@ var number = 1
 export default function  RecipeView () {
   const [loaded, setIsLoaded] = useState(false)
   const [dataRecipes, setDataRecipes] = useState([])
+
+  const [recipeDetails, setRecipeDetails] = useState()
+
+  const [show, setShow] = useState(false)
+
 
   function buildUrl(params){
     return(
@@ -50,9 +57,36 @@ export default function  RecipeView () {
     setDataRecipes(recipesList);
     console.log(recipesList)
   };
+
+
+  function RecipeShow(data) {
+    setShow(true)
+    setRecipeDetails(data)
+  }
+
+  function RecipeDetails(props) {
+    return (
+      <View style={styles.recipeDetailsContainer}>
+        <ImageBackground 
+              source={{uri:props.img}} style={styles.detailsLogo}>
+                <LinearGradient 
+              colors={['#00000000', 'white']} 
+              start={{ x: 0, y: 0}}
+              end={{ x: 0, y: 1 }}
+              style={styles.linearContainer}>
+              <Pressable onPress={()=>setShow(false)}><Image source={close} style={styles.smallClose}/></Pressable>
+
+              </LinearGradient>
+            </ImageBackground>
+        <Text style={styles.recipeDetailsTitle}>{props.title}</Text>
+      </View>
+    )
+  }
   
-  function Alert(props) {
+  
+  function Recipe(props) {
     return(
+      <Pressable onPress={()=>RecipeShow(props)}>
       <View style={styles.newsContainer}>
         <View style={styles.recipeLogoContainer}>
           <View style={styles.recipeCard}>
@@ -74,21 +108,25 @@ export default function  RecipeView () {
             </ImageBackground>
         </View>
       </View>
+      </Pressable>
     )
   };
-
-  if(loaded){
+  if(show && loaded){
+    return(
+      <RecipeDetails title={recipeDetails.title} img={recipeDetails.img}/>
+    )
+  }
+  else if(loaded){
     console.log(dataRecipes)
     return (
       <ScrollView contentContainerStyle={styles.container}>
         {dataRecipes.map((obj) => {
-        return(<Alert title={obj.title} text={'text'} key={obj.id} img={obj.image} reviews={obj.likes}/>)
+        return(<Recipe title={obj.title} text={'text'} key={obj.id} img={obj.image} reviews={obj.likes}/>)
         })}
       </ScrollView>
     );
   }
-
-  else {
+  else if(loaded == false){
     loadRecipes(); // only load if not loaded yet
     return(<Text>Loading...</Text>);
   }
