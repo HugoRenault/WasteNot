@@ -67,6 +67,8 @@ export default function App() {
   if ( showMain == 1) {
     return (
       <View style={styles.container}>
+        <Scan/>
+        <ToolBar current={1}/>
       </View>
     )
   }

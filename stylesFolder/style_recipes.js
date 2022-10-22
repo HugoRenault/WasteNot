@@ -70,22 +70,31 @@ export default StyleSheet.create({
       backgroundColor: 'grey',
       height: '100%',
       width:'100%', 
-      flex:1
+      flex:1,
     },
     recipeDetailsTitle: {
-      flex:3,
       fontWeight: 'bold',
-      fontSize: 25,
-      margin:12,
-      marginTop:15,
+      fontSize:30,
+      alignSelf:'center',
+      marginTop:20,
+      fontFamily:'Cochin'
     },
     smallClose: {
-      width:40,
-      height:40,
       position: 'absolute',
-      left:     20,
-      top:      60,
+      left:     40,
+      top:      70,
       tintColor:'white'
+    },
+    scrollRecipeDetails: {
+      marginTop:60,
+      flexDirection:'column',
+      alignItems:'center'
+    },
+    roundedView: {
+      width:'100%', 
+      height:53,
+      position:'absolute',
+      bottom:0,
     }
     }
     
