@@ -9,6 +9,11 @@ export default StyleSheet.create({
       justifyContent: 'flexStart',
       paddingTop: 100,
     },
+    scrollContainer: {
+      alignItems: 'center',
+      justifyContent: 'flexStart',
+      paddingTop: 100,
+    },
     newsContainer: {
       backgroundColor: dark,
       width: 375,

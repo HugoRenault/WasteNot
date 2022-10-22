@@ -24,10 +24,10 @@ const red = '#A05252'
 
 
 ///// PARAMETRIZE /////
-var ingredients_example = 'flour,eggs,apple'
+var ingredients_example = 'banana,sausage,lettuce,apricot,strawberry'
 var ignorePantry = true
 var ranking = 2 // minimize missing ingredients first
-var number = 1
+var number = 5
 ///////////////////////
 
 
@@ -60,14 +60,15 @@ export default function  RecipeView () {
     setIsLoaded(true);
     console.log(recipesList)
     setDataRecipes(recipesList);
-    console.log(recipesList)
   };
 
   function RecipeDetailsCard(props) {
     return(
       <View style={[styles.newsContainer, {backgroundColor:props.color}]}>
-        <Text style={styles.title}>{props.title}</Text>
-        <Text style={styles.text}>{props.text}</Text>
+        <Text style={styles.title}>{props.nb} {props.title}</Text>
+        {props.text.map((obj) => {
+        return(<View><Text style={{color:'white', fontSize:20, marginTop:6,}}>{obj.name.charAt(0).toUpperCase() + obj.name.slice(1)}</Text></View>)
+        })}
       </View>
     )
   }
@@ -76,6 +77,7 @@ export default function  RecipeView () {
   function RecipeShow(data) {
     setShow(true)
     setRecipeDetails(data)
+    console.log(data.missingNb)
   }
 
   function RecipeDetails(props) {
@@ -94,11 +96,12 @@ export default function  RecipeView () {
               </ImageBackground>
               </LinearGradient>
             </ImageBackground>
-        <View style={{flex:3}}>
+        <View style={{flex:2.25}}>
           <ScrollView contentContainerStyle={styles.scrollRecipeDetails}>
-            <RecipeDetailsCard title={'Used ingredients'} color={dark}/>
-            <RecipeDetailsCard title={'Missing ingredients'} color={dark}/>
+            <RecipeDetailsCard title={'Used ingredients'} color={dark} text={props.usedIngredients}  nb={props.usedNb}/>
+            <RecipeDetailsCard title={'Missing ingredients'} color={dark} text={props.missingIngredients} nb={props.missingNb}/>
           </ScrollView>
+
         </View>
       </View>
     )
@@ -134,15 +137,14 @@ export default function  RecipeView () {
   };
   if(show && loaded){
     return(
-      <RecipeDetails title={recipeDetails.title} img={recipeDetails.img}/>
+      <RecipeDetails title={recipeDetails.title} img={recipeDetails.img} usedIngredients={recipeDetails.usedIngredients} missingIngredients={recipeDetails.missingIngredients} usedNb={recipeDetails.usedNb} missingNb={recipeDetails.missingNb}/>
     )
   }
   else if(loaded){
-    console.log(dataRecipes)
     return (
-      <ScrollView contentContainerStyle={styles.container}>
+      <ScrollView contentContainerStyle={styles.scrollContainer}>
         {dataRecipes.map((obj) => {
-        return(<Recipe title={obj.title} text={'text'} key={obj.id} img={obj.image} reviews={obj.likes}/>)
+        return(<Recipe title={obj.title} text={'text'} key={obj.id} img={obj.image} reviews={obj.likes} usedIngredients={obj.usedIngredients} missingIngredients={obj.missedIngredients} usedNb={obj.usedIngredientCount} missingNb={obj.missedIngredientCount}/>)
         })}
       </ScrollView>
     );
