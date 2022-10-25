@@ -12,7 +12,7 @@ export default StyleSheet.create({
     },
     newsContainer: {
       backgroundColor: dark,
-      width: 375,
+      width: '90%',
       minHeight: 100,
       color: 'white',
       borderRadius: 24,
