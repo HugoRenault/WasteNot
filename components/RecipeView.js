@@ -4,7 +4,6 @@ import { StyleSheet, Text, View, ScrollView, Image, ImageBackground, Pressable} 
 import React, { useState} from 'react'
 import {LinearGradient} from  'expo-linear-gradient'
 
-
 import styles from '../stylesFolder/style_recipes'
 
 import arrow from '../assets/icons/arrow.png'
@@ -81,6 +80,7 @@ export default function  RecipeView () {
   }
 
   function RecipeDetails(props) {
+    const strSizeTreshold = 18;
     return (
       <View style={styles.recipeDetailsContainer}>
         <ImageBackground 
@@ -92,7 +92,11 @@ export default function  RecipeView () {
               style={styles.linearContainer}>
               <Pressable onPress={()=>setShow(false)}><Image source={close} style={styles.smallClose}/></Pressable>
               <ImageBackground source={rectangle} style={styles.roundedView}>
-                <Text style={styles.recipeDetailsTitle}>{props.title}</Text>
+                <View style={{flexGrow: 1, flexDirection: 'row',alignSelf:'center'}}>
+                  <Text style={[styles.recipeDetailsTitle]}>
+                    {props.title.length < strSizeTreshold ? props.title : props.title.slice(0,strSizeTreshold)+"..."}
+                  </Text>
+                </View>
               </ImageBackground>
               </LinearGradient>
             </ImageBackground>
@@ -111,7 +115,7 @@ export default function  RecipeView () {
   function Recipe(props) {
     return(
       <Pressable onPress={()=>RecipeShow(props)}>
-      <View style={styles.newsContainer}>
+      <View style={styles.newsContainerNoPadding}>
         <View style={styles.recipeLogoContainer}>
           <View style={styles.recipeCard}>
             <Text style={styles.title}>{props.title}</Text>

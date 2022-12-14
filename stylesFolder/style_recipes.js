@@ -1,4 +1,6 @@
 import { StyleSheet, TouchableWithoutFeedback } from 'react-native';
+import RNU from 'react-native-units'
+
 
 const dark = '#231F20';
 
@@ -13,6 +15,7 @@ export default StyleSheet.create({
       alignItems: 'center',
       justifyContent: 'flexStart',
       paddingTop: 100,
+      paddingBottom:100,
     },
     newsContainer: {
       backgroundColor: dark,
@@ -20,6 +23,14 @@ export default StyleSheet.create({
       color: 'white',
       borderRadius: 24,
       padding: 25,
+      margin: 10,
+    },
+    newsContainerNoPadding: {
+      backgroundColor: dark,
+      width: '90%',
+      color: 'white',
+      borderRadius: 24,
+      overflow:'hidden',
       margin: 10,
     },
     text: {
@@ -34,7 +45,7 @@ export default StyleSheet.create({
     },
     recipeCard: {
       flex:1,
-      
+      margin:25,
     },
     logo: {
       backgroundColor: 'grey',
@@ -79,10 +90,13 @@ export default StyleSheet.create({
     },
     recipeDetailsTitle: {
       fontWeight: 'bold',
+      maxWidth:'80%',
       fontSize:30,
       alignSelf:'center',
       marginTop:20,
-      fontFamily:'Cochin'
+      fontFamily:'Cochin',
+      flex:1,
+      width:1,
     },
     smallClose: {
       position: 'absolute',
