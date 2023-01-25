@@ -44,7 +44,7 @@ export default StyleSheet.create({
       marginBottom:15,
     },
     recipeCard: {
-      flex:1,
+      flex:0.7,
       margin:25,
     },
     logo: {

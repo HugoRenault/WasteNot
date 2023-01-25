@@ -23,10 +23,10 @@ const red = '#A05252'
 
 
 ///// PARAMETRIZE /////
-var ingredients_example = 'banana,sausage,lettuce,apricot,strawberry'
+var ingredients_example = 'couscous'
 var ignorePantry = true
 var ranking = 2 // minimize missing ingredients first
-var number = 5
+var number = 50
 ///////////////////////
 
 
@@ -124,11 +124,11 @@ export default function  RecipeView () {
             <Text style={{color:'white', marginLeft:10, fontSize:20}}>{props.reviews}</Text>
             </View>
           </View>
-          <ImageBackground 
+          <ImageBackground  // shift gradient to left on hover (when time)
               source={{uri:props.img}} style={styles.logo}>
                 <LinearGradient 
-              colors={['#00000000', '#231F20']} 
-              start={{ x: 1.005, y: 1 }}
+              colors={['#00000000', '#00000000','#231F20']} //colors={['blue', 'red']} 
+              start={{ x: 1.5, y: 1.5}}                       // Shade of recipe image 
               end={{ x: 0, y: 1 }}
               style={styles.linearContainer}>
               </LinearGradient>
