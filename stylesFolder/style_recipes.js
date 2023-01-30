@@ -19,7 +19,7 @@ export default StyleSheet.create({
     },
     newsContainer: {
       backgroundColor: dark,
-      width: '90%',
+      width: RNU.vw(90),
       color: 'white',
       borderRadius: 24,
       padding: 25,

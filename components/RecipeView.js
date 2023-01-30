@@ -26,7 +26,7 @@ const red = '#A05252'
 var ingredients_example = 'couscous'
 var ignorePantry = true
 var ranking = 2 // minimize missing ingredients first
-var number = 50
+var number = 10
 ///////////////////////
 
 
@@ -38,12 +38,21 @@ export default function  RecipeView () {
 
   const [show, setShow] = useState(false)
 
+  const [link, setLink] = useState("loading")
+
 
   function buildUrl(params){
     return(
       params.url + '&ingredients=' + params.ingredients + '&ignorePantry=' + params.ignorePantry + '&ranking=' + params.ranking + '&number=' + params.number
     )
   }
+
+  const GetLink = async(props) => {
+    let response = await fetch("https://api.spoonacular.com/recipes/"+ props.id +"/information?apiKey=3ea3890b95c948f78f365ed1e69b2166")
+    let response_link = await response.json();
+    console.log("LINK",response_link ,"LINKEND")
+    setLink(response_link);
+  };
   
   let params = {
       'url' : API_URL_FIND_BY_INGREDIENTS,
@@ -74,12 +83,15 @@ export default function  RecipeView () {
 
 
   function RecipeShow(data) {
-    setShow(true)
+    GetLink(data.id)
+    console.log("DATA", data, "DataEND")
     setRecipeDetails(data)
     console.log(data.missingNb)
+    setShow(true)
+
   }
 
-  function RecipeDetails(props) {
+  function RecipeDetails(props) { //actual details 
     const strSizeTreshold = 18;
     return (
       <View style={styles.recipeDetailsContainer}>
@@ -105,6 +117,7 @@ export default function  RecipeView () {
             <RecipeDetailsCard title={'Used ingredients'} color={dark} text={props.usedIngredients}  nb={props.usedNb}/>
             <RecipeDetailsCard title={'Missing ingredients'} color={dark} text={props.missingIngredients} nb={props.missingNb}/>
           </ScrollView>
+          <Text>{props.link}</Text>
 
         </View>
       </View>
@@ -141,14 +154,14 @@ export default function  RecipeView () {
   };
   if(show && loaded){
     return(
-      <RecipeDetails title={recipeDetails.title} img={recipeDetails.img} usedIngredients={recipeDetails.usedIngredients} missingIngredients={recipeDetails.missingIngredients} usedNb={recipeDetails.usedNb} missingNb={recipeDetails.missingNb}/>
+      <RecipeDetails title={recipeDetails.title} img={recipeDetails.img} usedIngredients={recipeDetails.usedIngredients} missingIngredients={recipeDetails.missingIngredients} usedNb={recipeDetails.usedNb} missingNb={recipeDetails.missingNb} />
     )
   }
   else if(loaded){
     return (
       <ScrollView contentContainerStyle={styles.scrollContainer}>
         {dataRecipes.map((obj) => {
-        return(<Recipe title={obj.title} text={'text'} key={obj.id} img={obj.image} reviews={obj.likes} usedIngredients={obj.usedIngredients} missingIngredients={obj.missedIngredients} usedNb={obj.usedIngredientCount} missingNb={obj.missedIngredientCount}/>)
+        return(<Recipe title={obj.title} text={'text'} id={obj.id} img={obj.image} reviews={obj.likes} usedIngredients={obj.usedIngredients} missingIngredients={obj.missedIngredients} usedNb={obj.usedIngredientCount} missingNb={obj.missedIngredientCount}/>)
         })}
       </ScrollView>
     );
