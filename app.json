@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "VirtualFridge",
-    "slug": "VirtualFridge",
+    "name": "WasteNot",
+    "slug": "WasteNot",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",

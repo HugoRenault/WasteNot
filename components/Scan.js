@@ -23,7 +23,12 @@ export default function IngredientsMains() {
   const getData = async () => {
     try {
       const jsonValue = await AsyncStorage.getItem('@ing')
-      setProducts(jsonValue != null ? JSON.parse(jsonValue) : null);
+      if (jsonValue == null){
+        setProducts([])
+      }
+      else {      
+        setProducts(jsonValue != null ? JSON.parse(jsonValue) : null);
+      }
     } catch(e) {
       // error reading value
     }

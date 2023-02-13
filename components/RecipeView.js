@@ -48,10 +48,16 @@ export default function  RecipeView () {
     try {
       const jsonValue = await AsyncStorage.getItem('@ing')
       const a = jsonValue != null ? JSON.parse(jsonValue) : null
-      let arrOfIng = [...ingredients]
-      a.forEach(ingredient => arrOfIng.push(ingredient.name))
-      console.log(arrOfIng)
-      setIngredients(arrOfIng)
+      if (a != null) {
+        let arrOfIng = [...ingredients]
+        a.forEach(ingredient => arrOfIng.push(ingredient.name))
+        console.log(arrOfIng)
+        setIngredients(arrOfIng)
+      }
+      else {
+        setIngredients([])
+      }
+      
     } catch(e) {
       console.log(e)
     }
