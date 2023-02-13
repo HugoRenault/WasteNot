@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Text, View, Button, Pressable, Image, SafeAreaView, ScrollView, Alert } from 'react-native';
 import { BarCodeScanner } from 'expo-barcode-scanner';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 
 import Ingredient from './Ingredient.js';
 import FloatingToolbar from './FloatingToolbar.js';
@@ -8,6 +10,24 @@ import FloatingToolbar from './FloatingToolbar.js';
 import styles from '../stylesFolder/style_ingredientsMain.js';
 
 export default function IngredientsMains() {
+
+  const storeData = async (value) => {
+    try {
+      const jsonValue = JSON.stringify(value)
+      await AsyncStorage.setItem('@ing', jsonValue)
+    } catch (e) {
+      // saving error
+    }
+  }
+
+  const getData = async () => {
+    try {
+      const jsonValue = await AsyncStorage.getItem('@ing')
+      setProducts(jsonValue != null ? JSON.parse(jsonValue) : null);
+    } catch(e) {
+      // error reading value
+    }
+  }
   const [hasPermission, setHasPermission] = useState(null);
   const [showScan, setShowScan] = useState(false);
   const [arr, setArr] = useState([]);
@@ -16,17 +36,16 @@ export default function IngredientsMains() {
   const getProduct = async (code) => {
     let response = await fetch(`https://world.openfoodfacts.org/api/v2/product/${code}`)
     let data = await response.json()
-    console.log('the data is here :', data)
 
     if(data.status_verbose==="product not found"){return}
 
     let arrOfObj = [...products];
-    console.log('name', data.product.product_name)
-    console.log('image', data.product.image_front_small_url)
     arrOfObj.push({name: data.product.product_name, image: data.product.image_front_small_url, id:data.code});
+    storeData(arrOfObj)
     setProducts(arrOfObj);
 
   }
+
 
   const askForCameraPermission = () => {
     (async () => {
@@ -42,19 +61,26 @@ export default function IngredientsMains() {
   // Request Camera Permission
   useEffect(() => {
     askForCameraPermission();
+    getData();
   }, []);
 
   // What happens when we scan the bar code
   const handleBarCodeScanned = ({ type, data }) => {
-    console.log('Type: ' + type + '\nData: ' + data)
     let arrOfObj = [...arr];
     arrOfObj.push(data);
     setArr(arrOfObj);
-    console.log(data)
     setShowScan(false)
 
     getProduct(data)
+
     Alert.alert("L'ingrédient a été ajouté avec succès");
+
+  };
+
+  const clear = () => {
+    setProducts([])
+    storeData([])
+
   };
 
   if (hasPermission === null) {
@@ -94,7 +120,8 @@ export default function IngredientsMains() {
             );
           })}
         </ScrollView>
-        <Pressable style={[styles.create_button,{marginBottom:100}]} onPress={addIngredient}><Text style={styles.button_text}>Scanner un article</Text></Pressable>
+        <Pressable style={[styles.create_button,{}]} onPress={addIngredient}><Text style={styles.button_text}>Scanner un article</Text></Pressable>
+        <Pressable style={[styles.create_button,{marginBottom:50}]} onPress={clear}><Text style={styles.button_text}>Clear</Text></Pressable>
 
       </SafeAreaView>
     )

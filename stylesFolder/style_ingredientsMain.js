@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import RNU from 'react-native-units'
 
 const dark = '#231F20';
 
@@ -8,7 +9,6 @@ export default StyleSheet.create({
     },
     container: {
       flex: 5,
-      backgroundColor: 'white',
       alignItems: 'center',
       justifyContent: 'center',
     },
@@ -46,13 +46,13 @@ export default StyleSheet.create({
       },
       ingredient_container: {
         alignItems: 'center',
-        justifyContent: 'center',
-        paddingVertical: 12,
+        justifyContent: 'space-between',
+        paddingBottom: 12,
         paddingHorizontal: 32,
-        borderRadius: 4,
+        borderRadius:24,
         elevation: 3,
-        backgroundColor: 'grey',
-        width: 150,
+        backgroundColor: dark,
+        width: 160,
         marginVertical: 10,
       },
       ingredient_name: {
@@ -61,6 +61,7 @@ export default StyleSheet.create({
         fontWeight: 'bold',
         letterSpacing: 0.25,
         color: 'white',
+        alignSelf:'center'
       },
       ingredient_list: {
         flexDirection: "row",
@@ -70,8 +71,11 @@ export default StyleSheet.create({
   
       },
       tinyLogo: {
-        width: 80,
-        height: 50,
+        width:100,
+        height: 70,
+        position: 'relative',
+        bottom: 15,
+        borderRadius:24,
       }
     }
   );

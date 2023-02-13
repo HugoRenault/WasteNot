@@ -67,7 +67,6 @@ export default function App() {
   if ( showMain == 1) {
     return (
       <View style={styles.container}>
-        <Scan/>
         <ToolBar current={1}/>
       </View>
     )
@@ -75,8 +74,21 @@ export default function App() {
   if ( showMain == 2) {
     return (
       <View style={styles.container}>
+        <ImageBackground 
+      source={fridge}
+      style={{
+        backgroundColor: 'grey',
+        width: '100%', // applied to Image
+        height: '100%' 
+      }}
+      imageStyle={{
+        resizeMode: 'contain' // works only here!
+      }}>
+        <Scan/>
         <ToolBar current={2}/>
+      </ImageBackground>
       </View>
+
     )
   }
   if ( showMain == 3) {

@@ -1,8 +1,10 @@
 // View w/ name, stars, rating and fading-in image
-
-import { StyleSheet, Text, View, ScrollView, Image, ImageBackground, Pressable} from 'react-native'
-import React, { useState} from 'react'
+import { StyleSheet, Text, View, ScrollView, Image, ImageBackground, Pressable, Linking} from 'react-native'
+import React, { useState, useEffect} from 'react'
 import {LinearGradient} from  'expo-linear-gradient'
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+
 
 import styles from '../stylesFolder/style_recipes'
 
@@ -15,7 +17,7 @@ import rectangle from '../assets/icons/rectangle.png'
 
 
 
-const API_KEY_SPOONACULAR = '3ea3890b95c948f78f365ed1e69b2166';
+const API_KEY_SPOONACULAR = '814881a1e93c460d84049f69a2258019';
 const API_URL_FIND_BY_INGREDIENTS = `https://api.spoonacular.com/recipes/findByIngredients?apiKey=${API_KEY_SPOONACULAR}`;
 
 const dark = '#231F20';
@@ -23,10 +25,9 @@ const red = '#A05252'
 
 
 ///// PARAMETRIZE /////
-var ingredients_example = 'couscous'
 var ignorePantry = true
 var ranking = 2 // minimize missing ingredients first
-var number = 10
+var number = 5
 ///////////////////////
 
 
@@ -38,25 +39,40 @@ export default function  RecipeView () {
 
   const [show, setShow] = useState(false)
 
+  const [ingredients, setIngredients] = useState([])
+
   const [link, setLink] = useState("loading")
 
 
-  function buildUrl(params){
-    return(
-      params.url + '&ingredients=' + params.ingredients + '&ignorePantry=' + params.ignorePantry + '&ranking=' + params.ranking + '&number=' + params.number
-    )
+  const getData = async () => {
+    try {
+      const jsonValue = await AsyncStorage.getItem('@ing')
+      const a = jsonValue != null ? JSON.parse(jsonValue) : null
+      let arrOfIng = [...ingredients]
+      a.forEach(ingredient => arrOfIng.push(ingredient.name))
+      console.log(arrOfIng)
+      setIngredients(arrOfIng)
+    } catch(e) {
+      console.log(e)
+    }
   }
 
-  const GetLink = async(props) => {
-    let response = await fetch("https://api.spoonacular.com/recipes/"+ props.id +"/information?apiKey=3ea3890b95c948f78f365ed1e69b2166")
+  function buildUrl(params){
+    return(
+      params.url + '&ingredients=' + ingredients  + '&ignorePantry=' + params.ignorePantry + '&ranking=' + params.ranking + '&number=' + params.number
+    )
+  }
+  
+
+  const GetLink = async(id) => {
+    let response = await fetch("https://api.spoonacular.com/recipes/"+ id +"/information?includeNutrition=False&apiKey=3ea3890b95c948f78f365ed1e69b2166")
     let response_link = await response.json();
-    console.log("LINK",response_link ,"LINKEND")
+    response_link = response_link.sourceUrl
     setLink(response_link);
   };
   
   let params = {
       'url' : API_URL_FIND_BY_INGREDIENTS,
-      'ingredients' : ingredients_example,
       'ignorePantry' : ignorePantry,
       'ranking' : ranking,
       'number' : number
@@ -66,7 +82,6 @@ export default function  RecipeView () {
     let response = await fetch(buildUrl(params))
     let recipesList = await response.json();
     setIsLoaded(true);
-    console.log(recipesList)
     setDataRecipes(recipesList);
   };
 
@@ -81,12 +96,9 @@ export default function  RecipeView () {
     )
   }
 
-
   function RecipeShow(data) {
     GetLink(data.id)
-    console.log("DATA", data, "DataEND")
     setRecipeDetails(data)
-    console.log(data.missingNb)
     setShow(true)
 
   }
@@ -116,9 +128,11 @@ export default function  RecipeView () {
           <ScrollView contentContainerStyle={styles.scrollRecipeDetails}>
             <RecipeDetailsCard title={'Used ingredients'} color={dark} text={props.usedIngredients}  nb={props.usedNb}/>
             <RecipeDetailsCard title={'Missing ingredients'} color={dark} text={props.missingIngredients} nb={props.missingNb}/>
+            <Text style={{color: 'blue'}}
+                  onPress={() => Linking.openURL(link)}>
+              More Details
+            </Text>
           </ScrollView>
-          <Text>{props.link}</Text>
-
         </View>
       </View>
     )
@@ -152,6 +166,10 @@ export default function  RecipeView () {
       </Pressable>
     )
   };
+
+  useEffect(() => {
+    getData();
+  }, []);
   if(show && loaded){
     return(
       <RecipeDetails title={recipeDetails.title} img={recipeDetails.img} usedIngredients={recipeDetails.usedIngredients} missingIngredients={recipeDetails.missingIngredients} usedNb={recipeDetails.usedNb} missingNb={recipeDetails.missingNb} />

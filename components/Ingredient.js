@@ -7,13 +7,15 @@ import styles from '../stylesFolder/style_ingredientsMain.js'
 export default function Ingredient (props) {
   return (
     <View style={styles.ingredient_container} key={props.product.id}>   
-      <Image
+    <Image
         style={styles.tinyLogo}
         source={{
           uri: props.product.image,
         }}
-      />       
+      />   
+      <View style={{display:'flex', flex:1, justifyContent:'center'}}>
       <Text style={styles.ingredient_name}>{props.product.name}</Text>
+      </View>
     </View>
   )
 }
