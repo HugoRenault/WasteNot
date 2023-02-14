@@ -48,7 +48,7 @@ export default StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'space-between',
         paddingBottom: 12,
-        paddingHorizontal: 32,
+        paddingHorizontal: 15,
         borderRadius:24,
         elevation: 3,
         backgroundColor: dark,
