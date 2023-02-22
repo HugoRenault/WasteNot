@@ -23,7 +23,7 @@ export default StyleSheet.create({
       color: 'white',
       borderRadius: 24,
       padding: 25,
-      margin: 10,
+      marginBottom:10,
     },
     newsContainerNoPadding: {
       backgroundColor: dark,
@@ -31,7 +31,7 @@ export default StyleSheet.create({
       color: 'white',
       borderRadius: 24,
       overflow:'hidden',
-      margin: 10,
+      marginBottom: 20,
     },
     text: {
       color:'white',
@@ -97,6 +97,7 @@ export default StyleSheet.create({
       fontFamily:'Cochin',
       flex:1,
       width:1,
+  
     },
     smallClose: {
       position: 'absolute',
@@ -105,9 +106,9 @@ export default StyleSheet.create({
       tintColor:'white'
     },
     scrollRecipeDetails: {
-      marginTop:60,
       flexDirection:'column',
-      alignItems:'center'
+      alignItems:'center',
+      paddingTop:40,
     },
     roundedView: {
       width:'100%', 

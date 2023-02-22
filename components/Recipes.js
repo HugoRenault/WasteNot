@@ -28,8 +28,8 @@ const red = '#A05252'
 
 ///// PARAMETRIZE /////
 var ignorePantry = true
-var ranking = 2 // minimize missing ingredients first
-var number = 5
+var ranking = 1 // minimize missing ingredients first
+var number = 20
 ///////////////////////
 
 
@@ -135,7 +135,7 @@ export default function  RecipeView () {
               </ImageBackground>
               </LinearGradient>
             </ImageBackground>
-        <View style={{flex:2.25}}>
+        <View style={{flex:2.25, paddingBottom:80}}>
           <ScrollView contentContainerStyle={styles.scrollRecipeDetails}>
             <RecipeDetailsCard title={'Used ingredients'} color={dark} text={props.usedIngredients}  nb={props.usedNb}/>
             <RecipeDetailsCard title={'Missing ingredients'} color={dark} text={props.missingIngredients} nb={props.missingNb}/>
