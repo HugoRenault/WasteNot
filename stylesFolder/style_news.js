@@ -8,7 +8,7 @@ export default StyleSheet.create({
       alignItems: 'center',
       justifyContent: 'flexStart',
       height:300,
-      paddingTop: 180,
+      paddingTop: 80,
     },
     newsContainer: {
       backgroundColor: dark,
@@ -30,6 +30,12 @@ export default StyleSheet.create({
       marginBottom:15
 
     },
+
+    logo : {
+      marginBottom:30,
+      width: 120,
+      height: 120,
+    }
     
     }
   );

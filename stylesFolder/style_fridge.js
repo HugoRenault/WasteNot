@@ -54,6 +54,7 @@ export default StyleSheet.create({
         backgroundColor: dark,
         width: 160,
         marginVertical: 10,
+        marginHorizontal:5,
       },
       ingredient_name: {
         fontSize: 16,
@@ -68,7 +69,6 @@ export default StyleSheet.create({
         justifyContent: "space-evenly",
         flexWrap:"wrap",
         marginVertical: 10,
-  
       },
       tinyLogo: {
         width:100,

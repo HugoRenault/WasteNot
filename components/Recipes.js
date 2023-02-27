@@ -14,6 +14,7 @@ import close from '../assets/icons/close.png'
 
 import rectangle from '../assets/icons/rectangle.png'
 
+import plane from '../assets/icons/moredetails.png'
 
 
 
@@ -139,10 +140,9 @@ export default function  RecipeView () {
           <ScrollView contentContainerStyle={styles.scrollRecipeDetails}>
             <RecipeDetailsCard title={'Used ingredients'} color={dark} text={props.usedIngredients}  nb={props.usedNb}/>
             <RecipeDetailsCard title={'Missing ingredients'} color={dark} text={props.missingIngredients} nb={props.missingNb}/>
-            <Text style={{color: 'blue'}}
-                  onPress={() => Linking.openURL(link)}>
-              More Details
-            </Text>
+            <Pressable onPress={() => Linking.openURL(link)}>
+                <Image source={plane} style={{height:100, width: 200,marginTop:35}}/>
+            </Pressable>
           </ScrollView>
         </View>
       </View>
@@ -187,16 +187,47 @@ export default function  RecipeView () {
     )
   }
   else if(loaded){ // if recipes are loaded but we aren't maximizing a recipe 
-    return (
-      <ScrollView contentContainerStyle={styles.scrollContainer}>
-        {dataRecipes.map((obj) => { // for each recipe 
-        return(<RecipeCard title={obj.title} id={obj.id} img={obj.image} reviews={obj.likes} usedIngredients={obj.usedIngredients} missingIngredients={obj.missedIngredients} usedNb={obj.usedIngredientCount} missingNb={obj.missedIngredientCount}/>)
-        })}
-      </ScrollView>
-    );
+    if (dataRecipes.length<1) {
+      return(
+        <View style={styles.scrollContainer}>
+                <View style={[styles.newsContainerNoPadding, {marginTop:150}]}>
+        <Text style={{
+          color:"white",
+          fontSize:36,
+          marginTop:125,
+          marginBottom:125,
+          alignSelf: 'center'
+        }}>No ingredients</Text>
+        </View>
+        </View>
+      )
+    }
+    else {
+      return (
+        <ScrollView contentContainerStyle={styles.scrollContainer}>
+          {dataRecipes.map((obj) => { // for each recipe 
+          return(<RecipeCard title={obj.title} id={obj.id} img={obj.image} reviews={obj.likes} usedIngredients={obj.usedIngredients} missingIngredients={obj.missedIngredients} usedNb={obj.usedIngredientCount} missingNb={obj.missedIngredientCount}/>)
+          })}
+        </ScrollView>
+      );
+    }
+    
   }
   else if(loaded == false){ //if ingredients not loaded 
     loadRecipes(); //then load them
-    return(<Text>Loading...</Text>);
+    return(
+      <View style={styles.scrollContainer}>
+      <View style={[styles.newsContainerNoPadding, {marginTop:150}]}>
+        <Text style={{
+        color:"white",
+        fontSize:36,
+        marginTop:125,
+        marginBottom:125,
+        alignSelf: 'center'
+        }}>Loading...</Text>
+
+        </View>
+        </View>
+      );
   }
 }

@@ -53,6 +53,7 @@ export default StyleSheet.create({
       width:iconHeight,
       height:iconHeight,
       tintColor:"white",// comme Walter
+      marginLeft:4,
     },
     maintext: {
       fontSize: 16,

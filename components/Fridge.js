@@ -60,7 +60,14 @@ export default function IngredientsMains() {
     Alert.alert("L'ingrédient a été ajouté avec succès");
 
   };
+   function deleteIngredient(name) {
+    array = [...products]
+    console.log(name)
+    array = array.filter((ingredient) => ingredient.name !== name)
+    storeData(array)
 
+    setProducts(array)
+    }
     
   const getProduct = async (code) => {  //with the code request open food facts to get data
     let response = await fetch(`https://world.openfoodfacts.org/api/v2/product/${code}`)
@@ -75,16 +82,12 @@ export default function IngredientsMains() {
 
   }
 
-  const clear = () => { //clear all ingredients
-    setProducts([])
-    storeData([])
-
-  };
 
 
   function Ingredient(props) { //style for each ingredient 
     return (
-      <View style={styles.ingredient_container} key={props.product.id}>   
+      <Pressable onLongPress={()=>deleteIngredient(props.product.name)} >
+<View style={styles.ingredient_container} key={props.product.id}>   
       <Image
           style={styles.tinyLogo}
           source={{
@@ -95,6 +98,8 @@ export default function IngredientsMains() {
         <Text style={styles.ingredient_name}>{props.product.name}</Text>
         </View>
       </View>
+      </Pressable>
+      
     )
   }
 
@@ -135,9 +140,7 @@ export default function IngredientsMains() {
             );
           })}
         </ScrollView>
-        <Pressable style={[styles.create_button,{}]} onPress={()=>setShowScan(true)}><Text style={styles.button_text}>Scan your item</Text></Pressable>
-        <Pressable style={[styles.create_button,{marginBottom:50}]} onPress={clear}><Text style={styles.button_text}>Clear</Text></Pressable>
-
+        <Pressable style={[styles.create_button,{marginBottom:50}]} onPress={()=>setShowScan(true)}><Text style={styles.button_text}>Scan your item</Text></Pressable>
       </SafeAreaView>
     )
   }

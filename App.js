@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Text, View, Button, Pressable, Image, SafeAreaView, ScrollView, Alert, ImageBackground } from 'react-native';
 
+import { LogBox } from 'react-native';
+LogBox.ignoreAllLogs();//Ignore all log notifications
+
+
 import Scan from './components/Fridge';
 import RecipeView from './components/Recipes';
 import NewsView from './components/News';

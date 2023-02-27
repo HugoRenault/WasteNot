@@ -115,6 +115,11 @@ export default StyleSheet.create({
       height:53,
       position:'absolute',
       bottom:0,
+    },
+  
+    loading: {
+      height: 500,
+      width: 500,
     }
     }
     

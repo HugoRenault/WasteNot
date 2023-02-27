@@ -1,9 +1,11 @@
 // main page with info about the fridge
 
-import { StyleSheet, Text, View, ScrollView } from 'react-native'
+import { StyleSheet, Text, View, ScrollView, Image } from 'react-native'
 import {React, useState, useEffect} from 'react'
 import styles from '../stylesFolder/style_news'
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import logo from '../assets/logo.png';
+
 
 
 export default function NewsView() {
@@ -34,10 +36,15 @@ export default function NewsView() {
     )
   }
   return (
+    
     <ScrollView contentContainerStyle={styles.container}>
+      <Image 
+        style={styles.logo}
+        source={logo}/>
       <Alert title={nb + ' Ingredients left !'} text={nb+' ingredients left in the fridge'}/>
       <Alert title={'How much time before running errands again ?'} text={'You have about 3 weeks until you run out of food'}/>
     </ScrollView>
+
   )
 }
 
