@@ -119,23 +119,26 @@ export default function  RecipeView () {
     const strSizeTreshold = 18;
     return (
       <View style={styles.recipeDetailsContainer}>
-        <ImageBackground 
-              source={{uri:props.img}} style={styles.detailsLogo}>
-                <LinearGradient 
-              colors={['#00000000', dark]} 
-              start={{ x: 1, y: 1}}
-              end={{ x: 0, y: 1 }}
-              style={styles.linearContainer}>
-              <Pressable onPress={()=>setMaximizeIngredient(false)}><Image source={close} style={styles.smallClose}/></Pressable>
-              <ImageBackground source={rectangle} style={styles.roundedView}>
-                <View style={{flexGrow: 1, flexDirection: 'row',alignSelf:'center'}}>
-                  <Text style={[styles.recipeDetailsTitle]}>
-                    {props.title.length < strSizeTreshold ? props.title : props.title.slice(0,strSizeTreshold)+"..."}
-                  </Text>
-                </View>
-              </ImageBackground>
-              </LinearGradient>
+        <ImageBackground source={{uri:props.img}} style={styles.detailsLogo}>
+          <LinearGradient 
+        colors={['#00000000', dark]} 
+        start={{ x: 1, y: 1}}
+        end={{ x: 0, y: 1 }}
+        style={styles.linearContainer}>
+          
+            <Pressable onPress={()=>setMaximizeIngredient(false)}>
+              <Image source={close} style={styles.smallClose}/>
+            </Pressable>
+            <ImageBackground source={rectangle} style={styles.roundedView}>
+              <View style={{flexGrow: 1, flexDirection: 'row',alignSelf:'center'}}>
+                <Text style={[styles.recipeDetailsTitle]}>
+                  {props.title.length < strSizeTreshold ? props.title : props.title.slice(0,strSizeTreshold)+"..."}
+                </Text>
+              </View>
             </ImageBackground>
+
+          </LinearGradient>
+        </ImageBackground>
         <View style={{flex:2.25, paddingBottom:80}}>
           <ScrollView contentContainerStyle={styles.scrollRecipeDetails}>
             <RecipeDetailsCard title={'Used ingredients'} color={dark} text={props.usedIngredients}  nb={props.usedNb}/>
@@ -164,8 +167,8 @@ export default function  RecipeView () {
             <Text style={{color:'white', marginLeft:10, fontSize:20}}>{props.reviews}</Text>
             </View>
           </View>
-          <ImageBackground  
-              source={{uri:props.img}} style={styles.logo}>
+
+          <ImageBackground source={{uri:props.img}} style={styles.logo}>
                 <LinearGradient 
               colors={['#00000000', '#00000000','#231F20']}
               start={{ x: 1.5, y: 1.5}}                       // Shade of recipe image 

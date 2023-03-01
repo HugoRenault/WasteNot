@@ -11,6 +11,7 @@ import NewsView from './components/News';
 import styles from './stylesFolder/style_app';
 
 import barcode from './assets/icons/barcode.png';
+import squares from './assets/icons/four-black-squares.png';
 import home from './assets/icons/home.png';
 import list from './assets/icons/list.png';
 import fridge from './assets/icons/fridge.png';
