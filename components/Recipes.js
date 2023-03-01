@@ -141,8 +141,8 @@ export default function  RecipeView () {
         </ImageBackground>
         <View style={{flex:2.25, paddingBottom:80}}>
           <ScrollView contentContainerStyle={styles.scrollRecipeDetails}>
-            <RecipeDetailsCard title={'Used ingredients'} color={dark} text={props.usedIngredients}  nb={props.usedNb}/>
-            <RecipeDetailsCard title={'Missing ingredients'} color={dark} text={props.missingIngredients} nb={props.missingNb}/>
+            <RecipeDetailsCard title={'Ingrédients utilisés'} color={dark} text={props.usedIngredients}  nb={props.usedNb}/>
+            <RecipeDetailsCard title={'Ingrédients manquants'} color={dark} text={props.missingIngredients} nb={props.missingNb}/>
             <Pressable onPress={() => Linking.openURL(link)}>
                 <Image source={plane} style={{height:100, width: 200,marginTop:35}}/>
             </Pressable>
@@ -200,7 +200,7 @@ export default function  RecipeView () {
           marginTop:125,
           marginBottom:125,
           alignSelf: 'center'
-        }}>No ingredients</Text>
+        }}>Pas d'ingrédients</Text>
         </View>
         </View>
       )
@@ -227,7 +227,7 @@ export default function  RecipeView () {
           marginTop:125,
           marginBottom:125,
           alignSelf: 'center'
-          }}>Loading...</Text>
+          }}>Chargement...</Text>
 
           </View>
         </View>

@@ -42,7 +42,7 @@ export default function NewsView() {
         style={styles.logo}
         source={logo}/>
       <Alert title={'Bienvenue !'} text={"Bienvenue sur WasteNot, l'application qui réduira votre gaspillage alimentaire"}/>
-      <Alert title={nb + ' ingrédients restants !'} text={'Il vous reste '+nb+ 'dans le frigo'}/>
+      <Alert title={nb + ' ingrédients restants !'} text={'Il vous reste '+nb+ ' ingrédients dans le frigo'}/>
     </ScrollView>
 
   )
