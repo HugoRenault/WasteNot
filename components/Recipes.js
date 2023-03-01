@@ -217,16 +217,16 @@ export default function  RecipeView () {
     loadRecipes(); //then load them
     return(
       <View style={styles.scrollContainer}>
-      <View style={[styles.newsContainerNoPadding, {marginTop:150}]}>
-        <Text style={{
-        color:"white",
-        fontSize:36,
-        marginTop:125,
-        marginBottom:125,
-        alignSelf: 'center'
-        }}>Loading...</Text>
+        <View style={[styles.newsContainerNoPadding, {marginTop:150}]}>
+          <Text style={{
+          color:"white",
+          fontSize:36,
+          marginTop:125,
+          marginBottom:125,
+          alignSelf: 'center'
+          }}>Loading...</Text>
 
-        </View>
+          </View>
         </View>
       );
   }

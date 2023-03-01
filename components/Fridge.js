@@ -60,7 +60,7 @@ export default function IngredientsMains() {
     Alert.alert("L'ingrédient a été ajouté avec succès");
 
   };
-   function deleteIngredient(name) {
+  function deleteIngredient(name) {
     array = [...products]
     console.log(name)
     array = array.filter((ingredient) => ingredient.name !== name)
