@@ -4,7 +4,6 @@ import { Text, View, Button, Pressable, Image, SafeAreaView, ScrollView, Alert, 
 import { LogBox } from 'react-native';
 LogBox.ignoreAllLogs();//Ignore all log notifications
 
-
 import Scan from './components/Fridge';
 import RecipeView from './components/Recipes';
 import NewsView from './components/News';
@@ -50,18 +49,12 @@ export default function App() {
     return (
       <View style={styles.container}>
         <ImageBackground 
-      source={fridge}
-      style={{
-        backgroundColor: 'grey',
-        width: '100%', 
-        height: '100%' 
-      }}
-      imageStyle={{
-        resizeMode: 'contain' 
-      }}>
-        <NewsView/>
-        <ToolBar current={0}/>
-      </ImageBackground>
+        source={fridge}
+        style={{backgroundColor: 'grey',width: '100%', height: '100%'}}
+        imageStyle={{resizeMode: 'contain'}}>
+          <NewsView/>
+          <ToolBar current={0}/>
+        </ImageBackground>
       </View>
     )
   }
@@ -69,18 +62,12 @@ export default function App() {
     return (
       <View style={styles.container}>
         <ImageBackground 
-      source={fridge}
-      style={{
-        backgroundColor: 'grey',
-        width: '100%',
-        height: '100%' 
-      }}
-      imageStyle={{
-        resizeMode: 'contain' 
-      }}>
-        <Scan/>
-        <ToolBar current={1}/>
-      </ImageBackground>
+        source={fridge}
+        style={{backgroundColor: 'grey', width: '100%',height: '100%'}}
+        imageStyle={{resizeMode: 'contain'}}>
+          <Scan/>
+          <ToolBar current={1}/>
+        </ImageBackground>
       </View>
 
     )
@@ -89,18 +76,12 @@ export default function App() {
     return (
       <View style={styles.container}>
         <ImageBackground 
-      source={fridge}
-      style={{
-        backgroundColor: 'grey',
-        width: '100%', 
-        height: '100%' 
-      }}
-      imageStyle={{
-        resizeMode: 'contain'
-      }}>
-        <RecipeView/>
-        <ToolBar current={2}/>
-      </ImageBackground> 
+        source={fridge}
+        style={{backgroundColor: 'grey',width: '100%',height: '100%'}}
+        imageStyle={{resizeMode: 'contain'}}>
+          <RecipeView/>
+          <ToolBar current={2}/>
+        </ImageBackground> 
       </View>
     )
   }
