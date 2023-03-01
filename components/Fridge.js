@@ -15,7 +15,7 @@ export default function IngredientsMains() {
       const jsonValue = JSON.stringify(value)
       await AsyncStorage.setItem('@ing', jsonValue)
     } catch (e) {
-      // saving error
+      console.error(e);
     }
   }
 
@@ -29,7 +29,7 @@ export default function IngredientsMains() {
         setProducts(jsonValue != null ? JSON.parse(jsonValue) : null);
       }
     } catch(e) {
-      // error reading value
+      console.error(e); 
     }
   }
   const [hasPermission, setHasPermission] = useState(null); //permission for camera
@@ -52,30 +52,25 @@ export default function IngredientsMains() {
 
   // What happens when we scan the bar code
   const handleBarCodeScanned = ({ type, data }) => { //when bar code is scanned
-
     setShowScan(false)
-
     getProduct(data) // get Product from barcode 
-
-    Alert.alert("L'ingrédient a été ajouté avec succès");
-
+    // Alert.alert("L'ingrédient a été ajouté avec succès");
   };
   function deleteIngredient(name) {
     array = [...products]
     console.log(name)
     array = array.filter((ingredient) => ingredient.name !== name)
     storeData(array)
-
     setProducts(array)
-    }
+  }
     
   const getProduct = async (code) => {  //with the code request open food facts to get data
     let response = await fetch(`https://world.openfoodfacts.org/api/v2/product/${code}`)
     let data = await response.json()
+    let arrOfObj = [...products];
 
     if(data.status_verbose==="product not found"){return}
 
-    let arrOfObj = [...products];
     arrOfObj.push({name: data.product.product_name, image: data.product.image_front_small_url, id:data.code}); // push scanned product to existing list
     storeData(arrOfObj) // store the list of ingredients
     setProducts(arrOfObj);
@@ -87,33 +82,30 @@ export default function IngredientsMains() {
   function Ingredient(props) { //style for each ingredient 
     return (
       <Pressable onLongPress={()=>deleteIngredient(props.product.name)} >
-<View style={styles.ingredient_container} key={props.product.id}>   
-      <Image
-          style={styles.tinyLogo}
-          source={{
-            uri: props.product.image,
-          }}
-        />   
-        <View style={{display:'flex', flex:1, justifyContent:'center'}}>
-        <Text style={styles.ingredient_name}>{props.product.name}</Text>
+        <View style={styles.ingredient_container} key={props.product.id}>   
+          <Image
+            style={styles.tinyLogo}
+            source={{uri: props.product.image}}
+          />   
+          <View style={{display:'flex', flex:1, justifyContent:'center'}}>
+            <Text style={styles.ingredient_name}>{props.product.name}</Text>
+          </View>
         </View>
-      </View>
-      </Pressable>
-      
+      </Pressable>     
     )
   }
 
   if (hasPermission === null) { //if not yet asked, request camera permission
     return (
       <View style={styles.container}>
-        <Text>Requesting for camera permission</Text>
+        <Text>En attente de l'accès a la caméra</Text>
       </View>)
   }
   if (hasPermission === false) { //if no camera permission 
     return (
       <View style={styles.container}>
         <Text style={{ margin: 10 }}>No access to camera</Text>
-        <Button title={'Allow Camera'} onPress={() => askForCameraPermission()} />
+        <Button title={'Caméra'} onPress={() => askForCameraPermission()} />
       </View>)
   }
   
