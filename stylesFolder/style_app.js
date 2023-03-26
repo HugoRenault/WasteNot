@@ -6,6 +6,7 @@ const toolbarHeight = 42;
 const iconHeight = 24;
 
 export default StyleSheet.create({
+    mainMenu : {backgroundColor: 'grey',width: '100%', height: '100%'},
     carouselContainer: {
         // TODO : finish carousel
     },
