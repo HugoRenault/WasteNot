@@ -14,3 +14,5 @@ Dependencies :
     "react-native": "0.69.6",
     "react-native-units": "^1.0.0",
     "expo-updates": "~0.14.7"
+
+Ardoise-Tarnec Louis, Renault Hugo, Rosier Enzo

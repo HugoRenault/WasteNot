@@ -31,6 +31,7 @@ export default function NewsView() {
     return(
       <View style={styles.newsContainer}>
         <Text style={styles.title}>{props.title}</Text>
+        <Text style={styles.text}>{props.text1} <Text style={[{fontWeight:'bold'}]}>{props.text2}</Text>{props.text3}</Text>
         <Text style={styles.text}>{props.text}</Text>
       </View>
     )
@@ -41,8 +42,8 @@ export default function NewsView() {
       <Image 
         style={styles.logo}
         source={logo}/>
-      <Alert title={'Bienvenue !'} text={"Bienvenue sur WasteNot, l'application qui réduira votre gaspillage alimentaire"}/>
-      <Alert title={nb + ' ingrédients restants !'} text={'Il vous reste '+nb+ ' ingrédients dans le frigo'}/>
+      <Alert title={'Bienvenue !'} text1={"Bienvenue sur"} text2={"WasteNot"}text3={", l'application qui réduira votre gaspillage alimentaire"}/>
+      <Alert title={nb + ' ingrédients restants !'} text={'Il vous reste '+nb+ ' ingrédients dans le frigo'} />
     </ScrollView>
 
   )
