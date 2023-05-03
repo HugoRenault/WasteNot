@@ -12,4 +12,5 @@ Dependencies :
     "expo-status-bar": "~1.4.0",
     "react": "18.0.0",
     "react-native": "0.69.6",
-    "react-native-units": "^1.0.0"
+    "react-native-units": "^1.0.0",
+    "expo-updates": "~0.14.7"
