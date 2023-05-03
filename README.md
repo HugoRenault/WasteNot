@@ -1,5 +1,25 @@
-# projet-nsi
+# WasteNot
 
+## Instructions
+
+### Sur l'ordinateur
+- Installer [NPM](https://nodejs.org/en/download) (cliquer sur NPM)
+- Télécharger le projet
+- Dans le répertoire du projet, exécuter :
+```
+npm install
+```
+Attendre que toutes les dépendances soit installées puis exécuter :
+```
+expo start
+```
+
+### Sur le téléphone
+- Télécharger l'application [Expo Go](https://apps.apple.com/fr/app/expo-go/id982107779) sur le téléphone
+- Scanner le QR Code qui s'affiche dans le terminal de l'ordinateur
+- L'application devrait s'ouvrir sur le téléphone
+
+## Credits
 icons : Dave Gandy
 
 APIs used : OpenFoodFacts ; Spoonacular
